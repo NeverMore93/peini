@@ -5,7 +5,7 @@ import org.springframework.security.provisioning.UserDetailsManager;
 
 import java.util.List;
 
-public interface UserService{
+public interface UserService extends UserDetailsManager{
     User save(User user);
     User getUserByEmail(String email);
     User getUserByUserName(String userName);

@@ -18,21 +18,51 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User save(User user) {
-        return null;
+        return userDao.saveAndFlush(user);
     }
 
     @Override
     public User getUserByEmail(String email) {
-        return null;
+        return userDao.findUserByEmail(email);
     }
 
     @Override
     public User getUserByUserName(String userName) {
-        return null;
+        return userDao.findUserByUsername(userName);
     }
 
     @Override
     public List<User> getAllUsers() {
+        return userDao.findAll();
+    }
+
+    @Override
+    public void createUser(UserDetails user) {
+
+    }
+
+    @Override
+    public void updateUser(UserDetails user) {
+
+    }
+
+    @Override
+    public void deleteUser(String username) {
+
+    }
+
+    @Override
+    public void changePassword(String oldPassword, String newPassword) {
+
+    }
+
+    @Override
+    public boolean userExists(String username) {
+        return false;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return null;
     }
 }
