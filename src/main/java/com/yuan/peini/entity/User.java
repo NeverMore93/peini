@@ -22,19 +22,19 @@ public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    Long id;
+    private Long id;
 
     @NotBlank
     @Column(name = "name")
-    String username;
+    private String username;
 
     @NotBlank
     @Column(name = "password")
-    String password;
+    private String password;
 
     @Email
     @Column(name = "email")
-    String email;
+    private String email;
 
     @Column(name = "gender")
     private Gender gender;

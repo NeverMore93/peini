@@ -20,6 +20,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.accept.ContentNegotiationStrategy;
 
 import javax.annotation.Resource;
@@ -27,7 +29,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig{
+public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Resource
     private DataSource dataSource;
@@ -43,7 +45,7 @@ public class SecurityConfig{
 
     @Bean(name = "authenticationManager")
     public AuthenticationManager authenticationManager(){
-        AuthenticationManagerBuilder authenticationManagerBuilder =
+        AuthenticationManager authenticationManager = new AuthenticationManagerBuilder().build();
 
     }
 
@@ -52,5 +54,17 @@ public class SecurityConfig{
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setUserDetailsService(jdbcUserDetailsManager());
         return daoAuthenticationProvider;
+    }
+
+    @Bean
+    UsernamePasswordAuthenticationFilter usernamePasswordAuthenticationFilter (){
+        UsernamePasswordAuthenticationFilter abstractAuthenticationProcessingFilter = new UsernamePasswordAuthenticationFilter();
+        abstractAuthenticationProcessingFilter.setAuthenticationManager(authenticationManager());
+        return abstractAuthenticationProcessingFilter;
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(jdbcUserDetailsManager());
     }
 }

@@ -37,10 +37,6 @@ dependencies {
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: "$springBootVersion"
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: "$springBootVersion"
     compile group: 'org.springframework.security', name: 'spring-security-jwt', version: '1.0.8.RELEASE'
-
-
-
-
     compileOnly ('org.projectlombok:lombok:1.16.16')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
